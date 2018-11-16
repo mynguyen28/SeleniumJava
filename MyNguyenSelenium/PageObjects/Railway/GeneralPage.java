@@ -8,14 +8,15 @@ import Constant.Constant;
 
 public class GeneralPage {
 	
-	private final String tabname = "//div[@id='menu']//span[normalize-space()='$$']";
+	private final String tabname = "//div[@id='$$']//span[normalize-space()='$$']";
 	private final String welcomeMsg = "Welcome $$";
 	
 	//Elements
 	protected WebElement getTabLogin()
 	{
-		String[] str= {"Login"};
+		String[] str= {"menu","Login"};
 		String logintab = Utilities.replaceString(tabname,str);
+//		String str = tabname.replace("$$", "Login");
 		return Constant.WEBDRIVER.findElement(By.xpath(logintab));
 	}
 	

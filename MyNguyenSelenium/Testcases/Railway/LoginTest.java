@@ -3,7 +3,7 @@ package Railway;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class LoginTest {
+public class LoginTest extends BaseTest{
 	@Test
 	public void TC01()
 	{
