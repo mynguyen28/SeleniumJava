@@ -7,42 +7,38 @@ import Common.Utilities;
 import Constant.Constant;
 
 public class GeneralPage {
-	
-	private final String tabname = "//div[@id='$$']//span[normalize-space()='$$']";
-	private final String welcomeMsg = "Welcome $$";
+
+	//Locators
+
 	
 	//Elements
-	protected WebElement getTabLogin()
+	protected WebElement getTabMenu(String menu)
 	{
-		String[] str= {"menu","Login"};
-		String logintab = Utilities.replaceString(tabname,str);
-//		String str = tabname.replace("$$", "Login");
-		return Constant.WEBDRIVER.findElement(By.xpath(logintab));
-	}
-	
-	protected WebElement getTabLogout()
-	{
-		String[] str= {"Log out"};
-		String logouttab = Utilities.replaceString(tabname,str);
-		return Constant.WEBDRIVER.findElement(By.xpath(logouttab));
+		String tabname= "//div[@id='menu']//span[normalize-space()='"+ menu +"']";
+		return Constant.WEBDRIVER.findElement(By.xpath(tabname));
 	}
 
 	protected WebElement getWelcomeMsg()
 	{
-		String[] str= {Constant.USERNAME};
-		String logintab = Utilities.replaceString(welcomeMsg,str);
-		return Constant.WEBDRIVER.findElement(By.xpath(logintab));
+		String welcomeMsg = "//div[@class='account' and normalize-space()='Welcome "+ Constant.USERNAME +"']";
+		return Constant.WEBDRIVER.findElement(By.xpath(welcomeMsg));
 	}
 	//Methods
 	public LoginPage gotoLoginPage()
 	{
-		this.getTabLogin().click();
+		this.getTabMenu("Login").click();
 		return new LoginPage();
 	}
-	
+
 	public Boolean isWelcomeMsgDisplayed()
 	{
 		return this.getWelcomeMsg().isDisplayed();
 	}
+	
+	public void logOut()
+	{
+		this.getTabMenu("Log out").click();
+	}
 
 }
+

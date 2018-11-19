@@ -10,24 +10,24 @@ public class LoginPage extends GeneralPage{
 	private final String username = "username";
 	private final String password = "password";
 	private final String login = "//input[@title='Login']";
-	private final String loginError = "//p[@class='message error LoginForm' and normalize-space()='There was a problem with your login and/or errors exist in your form.']";
+	private final String loginError = "//p[@class='message error LoginForm']";
 	
-	public WebElement getUsername()
+	public WebElement getEleUsername()
 	{
 		return Constant.WEBDRIVER.findElement(By.id(username));
 	}
 
-	public WebElement getPassword()
+	public WebElement getElePassword()
 	{
 		return Constant.WEBDRIVER.findElement(By.id(password));
 	}
 	
-	public WebElement getLogin()
+	public WebElement getEleLogin()
 	{
 		return Constant.WEBDRIVER.findElement(By.xpath(login));
 	}
 	
-	public WebElement getLoginError()
+	public WebElement getEleLoginError()
 	{
 		return Constant.WEBDRIVER.findElement(By.xpath(loginError));
 	}
@@ -35,14 +35,19 @@ public class LoginPage extends GeneralPage{
 	//Methods
 	public void submitLogin(String username, String password)
 	{
-		getUsername().sendKeys(username);
-		getPassword().sendKeys(password);
-		getLogin().click();
+		getEleUsername().sendKeys(username);
+		getElePassword().sendKeys(password);
+		getEleLogin().click();
 	}
 	public HomePage login(String usename, String password)
 	{
 		submitLogin(usename, password);
 		return new HomePage();
+	}
+	
+	public String getLoginError()
+	{
+		return this.getEleLoginError().getText();
 	}
 
 }

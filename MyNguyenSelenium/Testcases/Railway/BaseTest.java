@@ -10,7 +10,7 @@ import Constant.Constant;
 public class BaseTest {
 
 	@BeforeClass
-	protected void beforeMethod()
+	protected void beforeClass()
 	{
 		System.out.println("Pre-condition");
 		System.setProperty("webdriver.chrome.driver", Utilities.getProjectPath()+ "\\Executables\\chromedriver.exe");
@@ -18,11 +18,11 @@ public class BaseTest {
 		Constant.WEBDRIVER.manage().window().maximize();
 		
 	}
-	
 	@AfterClass
-	protected void afterMethod()
+	protected void afterClass()
 	{
 		System.out.println("Post-condition");
 		Constant.WEBDRIVER.quit();
 	}
+
 }
